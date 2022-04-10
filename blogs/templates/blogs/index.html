@@ -1,0 +1,19 @@
+{% extends "blogs/layout.html" %}
+
+{% block body %}
+
+    <div class = 'div1'>
+        <h1 id ="cblogs"> BLOGS </h1>
+        <input id="csearch" type="text" placeholder='Search..'>
+    </div>
+
+    <a href= "{% url 'newblogs' %}">Enter a new blog </a>
+{% for post in posts %}
+    <h2> <a href="{% url 'individual' pk=post.pk %} "> {{post.title}}</a></h2>
+    <i>{{post.author}}</i>
+    <p>{{post.text}}</p>
+        
+{% endfor%}
+    
+{% endblock %}
+

@@ -1,0 +1,14 @@
+{% extends "blogs/index.html" %}
+
+{% block body %}
+<article class = "post">
+
+    {{post.pk}}
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-secondary">Save</button>
+    </form>
+
+</article>
+{% endblock %}

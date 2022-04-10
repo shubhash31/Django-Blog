@@ -1,0 +1,32 @@
+{% extends "blogs/layout.html" %}
+{% block body %}
+    <h3>{{ post }}</h3>
+    {{post.author}}
+    {{post.text}} 
+    <br>
+    <br>
+    
+    <a href= "{% url 'editblogs' pk=post.pk %}">Edit this blog </a>
+    <br>
+    <br>
+    <a href= "{% url 'deleteblog' pk=post.pk %}"> Delete </a>
+    <h4> Comments </h4>
+        {% if not comments %}
+            <p>No comments</p>
+        {% else %}            
+            {% for comment in comments %}
+                  <p>Name</p> {{comment.name}}
+                <p>Body</p><i>{{comment.body}}</i>
+                <p>{{comment.date_added}}</p>
+                <a href = "{% url 'delcomment' pk=comment.pk %}"> Del </a>
+                <hr>
+
+            {% endfor %} 
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            {{add_comment.as_p}}
+            <input type='Submit' value='Save and Submit'>
+        </form>
+{% endblock %}
